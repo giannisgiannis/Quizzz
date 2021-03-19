@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intro to javascript</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"
+          ><span style="font-size: 30px">H - Quiz</span
+          ><span style="font-size: 20px">z</span
+          ><span style="font-size: 10px">z</span
+          ><span style="font-size: 5px">z</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="inline">
+        <!-- <h1>Play Game</h1> -->
+        <!-- <span># of Question:</span> <span id="score">0</span> -->
+        <span id="score">Score: 0</span>
+        <span id="questions-remaining">Questions remaining: 0</span>
+      </div>
+      <div id="question-box" class="question-box"></div>
+      <div id="message" class="message"></div>
+      <div class="buttons">
+        <button id="btn-true" class="btn btn-true" onclick="checkAnswer(true)">
+          True
+        </button>
+        <button
+          id="btn-false"
+          class="btn btn-false"
+          onclick="checkAnswer(false)"
+        >
+          False
+        </button>
+      </div>
+      <div class="text-center mt-1">
+        <button
+          id="btn-next"
+          class="btn btn-next"
+          onclick="nextQuestion()"
+          hidden
+        >
+          ⚡ Next Question ⚡
+        </button>
+      </div>
+      <div class="text-center mt-1">
+        <button
+          id="btn-restart"
+          class="btn btn-restart"
+          onclick="restartGame()"
+          hidden
+        >
+          Restart Game
+        </button>
+      </div>
+    </div>
+
+    <script src="js/questions.js"></script>
+    <script>
+      var questionBox = document.getElementById("question-box");
+      var message = document.getElementById("message");
+      var btnTrue = document.getElementById("btn-true");
+      var btnFalse = document.getElementById("btn-false");
+      var btnNext = document.getElementById("btn-next");
+      var btnRestart = document.getElementById("btn-restart");
+      var scoreElement = document.getElementById("score");
+      var questionsRemainingElement = document.getElementById(
+        "questions-remaining"
+      );
+      var times = 0;
+      var questionNumber = 0;
+      var score = 0;
+      var allQuestions = Object.keys(questions).length;
+      var getRandomNumber = Math.floor(Math.random() * allQuestions);
+      var newQuestions = [];
+
+      questionsRemainingElement.innerHTML =  "Questions Remaining: " + allQuestions;
+
+      changeQuestion();
+
+      function nextQuestion() {
+        questions.splice(questionNumber, 1);
+        allQuestions = Object.keys(questions).length;
+        if (allQuestions == 0) {
+          gameover();
+        } else {
+          questionNumber++; // questionNumber = questionNumber + 1
+          changeQuestion();
+          resetQuestion();
+        }
+      }
+
+      function resetQuestion() {
+        questionBox.style.backgroundColor = "white";
+        btnFalse.style.backgroundColor = "rgb(135, 81, 81)";
+        btnTrue.style.backgroundColor = "rgb(42, 101, 51)";
+        message.innerHTML = "";
+        btnTrue.disabled = false;
+        btnFalse.disabled = false;
+        btnNext.hidden = true;
+      }
+
+      function checkAnswer(choise) {
+        questionsRemainingElement.innerHTML =  "Questions Remaining: " + (allQuestions - 1);
+        if (allQuestions == 1) {
+          btnFalse.hidden = true;
+          btnTrue.hidden = true;
+          btnNext.style.fontSize = "80px";
+          btnNext.innerHTML = "SHOW RESULTS";
+          btnNext.backgroundColor = "#e67e22";
+        }
+        console.log('question num' + questionNumber);
+        if (choise == questions[questionNumber].answer) {
+          questionBox.style.backgroundColor = "green";
+          message.style.color = "green";
+          message.innerHTML = "YOUR ANSWER IS CORRECT";
+          score++;
+          scoreElement.innerText = "Score: " + score;
+        } else {
+          questionBox.style.backgroundColor = "red";
+          message.style.color = "red";
+          message.innerHTML = "YOUR ANSWER IS INCORRECT";
+        }
+
+        if (choise) {
+          btnTrue.style.backgroundColor = "black";
+        } else {
+          btnFalse.style.backgroundColor = "black";
+        }
+        times = times + 1;
+        btnTrue.disabled = true;
+        btnFalse.disabled = true;
+        btnNext.hidden = false;
+      }
+
+      function changeQuestion() {
+        allQuestions = Object.keys(questions).length;
+        questionNumber = Math.floor(Math.random() * allQuestions);
+        questionBox.innerHTML = questions[questionNumber].question;
+        newQuestions.push(questions[questionNumber]);
+        console.log(newQuestions);
+      }
+
+      function gameover() {
+        btnTrue.hidden = true;
+        btnFalse.hidden = true;
+        btnNext.hidden = true;
+        message.innerHTML = "";
+        questionBox.style.backgroundColor = "#ffffff";
+        questionBox.innerHTML = "Your Final Score is: " + score;
+        scoreElement.innerHTML = "";
+        btnRestart.hidden = false;
+      }
+
+      // TODO
+      function restartGame() {
+        // window.location = './index.html';
+        // 1. Εμφάνιση σκορ και να το μηδενίσουμε
+        score = 0;
+        scoreElement.innerText = "Score: " + score;
+        // 2. Να εμφανίσουμε τα κουμπιά TRUE-FALSE και να εξαφανίσουμε το RESTART
+        btnRestart.hidden = true;
+        btnFalse.hidden = false;
+        btnTrue.hidden = false;
+        btnTrue.disabled = false;
+        btnFalse.disabled = false;
+        btnFalse.style.backgroundColor = "rgb(135, 81, 81)";
+        btnTrue.style.backgroundColor = "rgb(42, 101, 51)";
+        // 3. Να εμφανίσουμε την πρώτη ερώτηση
+        questionNumber = 0;
+        questions = newQuestions;
+        changeQuestion(questionNumber);
+        questionsRemainingElement.innerHTML =  "Questions Remaining: " + allQuestions;
+      }
+    </script>
+  </body>
+</html>
