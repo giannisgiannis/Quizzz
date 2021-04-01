@@ -37,5 +37,37 @@ var questions = [
     {
         "answer": true,
         "question": "Ο ετεροθαλής αδελφός του Θορ ονομάζεται Λόκι"
-    }
+    },
+    {
+        "answer": false,
+        "question": "Η φρουρά του Black Panther που αποτελείται μόνο από γυναίκες λέγεται Black Panther's Protectors?"
+    },
+    {
+        "answer": true,
+        "question": "Ο Hawkeye ΔΕΝ εμφανίζεται στο Infinity War?"
+    },
+    {
+        "answer": false,
+        "question": "Ο στρατός που συγκεντρώνει ο Thanos στην Γη ονομάζεται Demogorgons?"
+    },
+    {
+        "answer": false,
+        "question": "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Mars?"
+    },
+    {
+        "answer": true,
+        "question": "Tα πετράδια της αιωνιότητας είναι 6?"
+    },
+    {
+        "answer": true,
+        "question": "O Doctor Strange είχε 14.000.605 ενναλακτικές επιλογές?",
+    },
+    {
+        "answer": false,
+        "question": "Η πρώτη εμφάνιση του Captain America ήταν στην φυλακή?",
+    },
+    {
+        "answer": false,
+        "question": "Για να αποκτήσεις κάποιος το Soul Stone απαιτείται να κατέχει ήδη τα υπόλοιπα πετράδια?",
+    },
 ];
