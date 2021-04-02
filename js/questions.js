@@ -48,11 +48,14 @@ var questions = [
     },
     {
         "answer": false,
-        "question": "Ο στρατός που συγκεντρώνει ο Thanos στην Γη ονομάζεται Demogorgons?"
+        "question": "Ο στρατός που συγκεντρώνει ο Thanos στην Γη ονομάζεται Demogorgons?",
+        "wiki" : "Ο στρατός Thanos στην Γη ονομάζεται Outriders"
     },
     {
         "answer": false,
-        "question": "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Mars?"
+        "question": "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Mars?",
+        "wiki" : "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Vormir"
+       
     },
     {
         "answer": true,
@@ -65,9 +68,11 @@ var questions = [
     {
         "answer": false,
         "question": "Η πρώτη εμφάνιση του Captain America ήταν στην φυλακή?",
+        "wiki" : "Η πρώτη εμφάνιση του Captain America ήταν στον σταθμό τρένου"
     },
     {
         "answer": false,
         "question": "Για να αποκτήσεις κάποιος το Soul Stone απαιτείται να κατέχει ήδη τα υπόλοιπα πετράδια?",
+        "wiki" : "Για να αποκτήσεις κάποιος το Soul Stone απαιτείται μια θυσία, ενός αγαπημένου προσώπου"
     },
 ];
