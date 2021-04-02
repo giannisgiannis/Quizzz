@@ -54,8 +54,7 @@ var questions = [
     {
         "answer": false,
         "question": "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Mars?",
-        "wiki" : "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Vormir"
-       
+        "wiki" : "Το Soul Stone σύμφωνα με την ταινία το βρήκαν  στον πλανήτη Vormir"       
     },
     {
         "answer": true,
